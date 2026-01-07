@@ -25,7 +25,7 @@ Não é obrigatório utilizar todas as garagens.
 
 ---
 
-#🧠 Formulação Matemática 
+# 🧠 Formulação Matemática 
 Problema Mestre — Set Partitioning
 
 Minimiza o custo total das rotas selecionadas:
@@ -61,49 +61,14 @@ Onde:
 
 Resolve um ESPPRC (Elementary Shortest Path Problem with Resource Constraints), buscando rotas com custo reduzido negativo:
 
-𝑐
-ˉ
-𝑟
-=
-𝑐
-𝑟
-−
-∑
-𝑖
-𝜋
-𝑖
-𝑎
-𝑖
-𝑟
-−
-𝜇
-c
-ˉ
-r
-	​
-
-=c
-r
-	​
-
-−
-i
-∑
-	​
-
-π
-i
-	​
-
-a
-ir
-	​
-
-−μ
-
+```math
+\bar{c}_r = c_r - \sum_{i \in \mathcal{C}} \pi_i a_{ir} - \mu
+```
 Implementado de duas formas:
 
-Heurístico (guloso + 2-opt aberto)
+- **Heurístico**: abordagem gulosa com refinamento por *2-opt aberto*.
+- **Exato**: modelo de Programação Inteira Mista (MIP) implementado em Pyomo, utilizando restrições MTZ e de capacidade.
+
 
 Exato (MIP com Pyomo, MTZ + capacidade)
 
