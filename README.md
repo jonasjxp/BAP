@@ -69,32 +69,33 @@ Implementado de duas formas:
 - **Heurístico**: abordagem gulosa com refinamento por *2-opt aberto*.
 - **Exato**: modelo de Programação Inteira Mista (MIP) implementado em Pyomo, utilizando restrições MTZ e de capacidade.
 
+---
 
-Exato (MIP com Pyomo, MTZ + capacidade)
+# ⚙️ Estrutura do Código
+## Principais Componentes
 
-⚙️ Estrutura do Código
-Principais Componentes
+- **VRPInstanceMD**  
+  Estrutura da instância *multi-depot → sink* (sintética).
 
-VRPInstanceMD
-Estrutura da instância multi-depot → sink (sintética)
+- **RealWorldMDInstance**  
+  Instância baseada em dados reais, construída a partir do **OSMnx**.
 
-RealWorldMDInstance
-Instância baseada em dados reais (OSMnx)
+- **run_grasp_vrp_md**  
+  *Warm-start* via GRASP, gerando rotas longas iniciais.
 
-run_grasp_vrp_md
-Warm-start via GRASP com rotas longas
+- **improve_route_2opt_open**  
+  Operador de busca local *2-opt* para rotas abertas (depósito → *sink*).
 
-improve_route_2opt_open
-2-opt para rotas abertas (depot → sink)
+- **solve_exact_pricing_md**  
+  Subproblema de *pricing* resolvido exatamente via MIP (ESPPRC).
 
-solve_exact_pricing_md
-Pricing exato via MIP (ESPPRC)
+- **solve_node_md**  
+  Resolução de um nó da árvore do **Branch-and-Price**.
 
-solve_node_md
-Resolução de um nó do Branch-and-Price
+- **solve_full_branch_and_price_md**  
+  Implementação completa do algoritmo **Branch-and-Price**.
 
-solve_full_branch_and_price_md
-Algoritmo completo de Branch-and-Price
+---
 
 🗺️ Instâncias Reais (OpenStreetMap)
 
