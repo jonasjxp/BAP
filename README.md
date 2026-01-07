@@ -30,9 +30,9 @@ Problema Mestre — Set Partitioning
 
 Minimiza o custo total das rotas selecionadas:
 
-```$
+```math
 \min_{r \in \Omega} \sum_{r \in \Omega} c_r \lambda_r
-$```​
+```​
 
 Sujeito a:
 
