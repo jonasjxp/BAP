@@ -5,7 +5,7 @@ A dapta o solver para o Multi-Depot Vehicle Routing Problem com destino final fi
 
 ---
 
-#📌 Problema Modelado
+# 📌 Problema Modelado
 
 Garagens (depots): múltiplos pontos de partida
 
@@ -23,31 +23,14 @@ garagem → clientes → escola.
 
 Não é obrigatório utilizar todas as garagens.
 
+---
+
 #🧠 Formulação Matemática 
 Problema Mestre — Set Partitioning
 
 Minimiza o custo total das rotas selecionadas:
 
-\[
-\min_{r \in \Omega} \sum_{r \in \Omega} c_r \lambda_r
-\]
-
-\[
-\text{sujeito a:}
-\]
-
-\[
-\sum_{r \in \Omega} a_{ir} \lambda_r = 1 \quad \forall i \in \mathcal{C}
-\]
-
-\[
-\sum_{r \in \Omega} \lambda_r \le K
-\]
-
-\[
-\lambda_r \in \{0,1\} \quad \forall r \in \Omega
-\]
-
+Minimiza o custo total das rotas selecionadas:
 
 min
 ⁡
@@ -97,7 +80,76 @@ r∈Ω
 a
 ir
 	​
-Subproblema (Pricing)
+
+λ
+r
+	​
+
+=1∀i∈C
+∑
+𝑟
+∈
+Ω
+𝜆
+𝑟
+≤
+𝐾
+r∈Ω
+∑
+	​
+
+λ
+r
+	​
+
+≤K
+𝜆
+𝑟
+∈
+{
+0
+,
+1
+}
+λ
+r
+	​
+
+∈{0,1}
+
+Onde:
+
+𝐶
+C: conjunto de clientes
+
+𝑎
+𝑖
+𝑟
+=
+1
+a
+ir
+	​
+
+=1 se a rota 
+𝑟
+r atende o cliente 
+𝑖
+i
+
+𝑐
+𝑟
+c
+r
+	​
+
+: custo da rota
+
+𝐾
+K: número máximo de veículos
+	
+---​
+# Subproblema (Pricing)
 
 Resolve um ESPPRC (Elementary Shortest Path Problem with Resource Constraints), buscando rotas com custo reduzido negativo:
 
