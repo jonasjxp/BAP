@@ -122,30 +122,13 @@ Onde:
 𝐶
 C: conjunto de clientes
 
-𝑎
+𝑎𝑖𝑟 = 1
+air=1 se a rota 
+𝑟 atende o cliente 
 𝑖
-𝑟
-=
-1
-a
-ir
-	​
-
-=1 se a rota 
-𝑟
-r atende o cliente 
-𝑖
-i
-
 𝑐
 𝑟
-c
-r
-	​
-
 : custo da rota
-
-𝐾
 K: número máximo de veículos
 	
 ---​
