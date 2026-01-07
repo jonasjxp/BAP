@@ -97,85 +97,31 @@ Implementado de duas formas:
 
 ---
 
-🗺️ Instâncias Reais (OpenStreetMap)
+# 🗺️ Instâncias Reais (OpenStreetMap)
 
-O código permite gerar instâncias reais automaticamente:
+O código permite a geração automática de instâncias reais:
 
-Escola pública = sink
+- Escola pública definida como *sink*;
+- Garagens e clientes modelados como nós da malha viária;
+- Distâncias calculadas como o menor caminho real (Dijkstra).
 
-Garagens e clientes = nós da malha viária
+Visualização interativa com **Folium**:
 
-Distâncias = menor caminho real (Dijkstra)
+- Garagens;
+- Clientes;
+- Escola (*sink*);
+- Rotas reais desenhadas sobre a malha urbana.
 
-Visualização interativa com Folium:
+---
 
-Garagens
+# 📊 Visualizações
 
-Clientes
+- **Matplotlib**: visualização de instâncias sintéticas;
+- **Folium**: mapas interativos para instâncias reais;
+- Setas indicando a direção das rotas;
+- Escola destacada como *sink*.
 
-Escola (sink)
-
-Rotas reais desenhadas na malha urbana
-
-▶️ Como Executar
-1️⃣ Dependências
-
-No Google Colab (ou Ubuntu):
-
-apt-get install -y glpk-utils coinor-cbc
-pip install pyomo osmnx folium networkx matplotlib
-
-2️⃣ Executar Instância Sintética
-inst = make_instance_md(
-    n=15,
-    m=3,
-    K=4,
-    Q=7,
-    seed=37,
-    sink_center=True
-)
-
-cost, routes = solve_full_branch_and_price_md(inst)
-plot_routes_md(inst, routes)
-
-3️⃣ Executar Instância Real (OSM)
-inst = build_realworld_md_instance(
-    n_clients=12,
-    m_depots=3,
-    city_query="Fortaleza, Ceara, Brazil",
-    radius_meters=1500,
-    Q=5,
-    K=4,
-    school_as_sink=True
-)
-
-cost, routes = solve_full_branch_and_price_md(inst)
-mapa = plot_solution_on_map_md(inst, routes)
-mapa
-
-🧪 Características Importantes
-
-✔️ Rotas abertas (não retornam ao depósito)
-
-✔️ Não obriga uso de todas as garagens
-
-✔️ Branching em arcos (estável para B&P)
-
-✔️ Estabilização de duais (smoothing)
-
-✔️ Fallback exato garante correção
-
-✔️ Compatível com dados reais
-
-📊 Visualizações
-
-Matplotlib: instâncias sintéticas
-
-Folium: mapas interativos reais
-
-Setas indicam direção da rota
-
-Escola destacada como sink
+---
 
 🎓 Contexto Acadêmico
 
@@ -189,8 +135,11 @@ Estudos de Branch-and-Price
 
 Aplicações reais em Transporte Escolar
 
-✍️ Autor
+---
+
+# ✍️ Autores
 
 Jonas Xavier
-Projeto desenvolvido para estudo e aplicação de
-Branch-and-Price em VRP Multi-Depot com Sink
+Ranelle Oliveira
+Francisco das Chagas
+Aplicação de Branch-and-Price em VRP Multi-Depot com Sink.
