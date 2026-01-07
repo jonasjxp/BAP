@@ -3,6 +3,7 @@ Branch-and-Price com Geração de Colunas (Python / Pyomo)
 
 A dapta o solver para o Multi-Depot Vehicle Routing Problem com destino final fixo, onde veículos partem de múltiplas garagens e terminam em uma escola.
 
+---
 
 #📌 Problema Modelado
 
