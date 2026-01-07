@@ -125,7 +125,6 @@ Visualização interativa com **Folium**:
 
 # ✍️ Autores
 
-Jonas Xavier
-Ranelle Oliveira
-Francisco das Chagas
-Aplicação de Branch-and-Price em VRP Multi-Depot com Sink.
+-Jonas Xavier
+-Ranelle Oliveira
+-Francisco das Chagas
