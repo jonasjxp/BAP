@@ -1,53 +1,52 @@
-🚍 Multi-Depot Vehicle Routing Problem with Sink
+# 🚍 Multi-Depot Vehicle Routing Problem with Sink
 Branch-and-Price com Geração de Colunas (Python / Pyomo)
 
-Este repositório implementa, do zero, um solver para o Multi-Depot Vehicle Routing Problem com destino final fixo (Sink), onde veículos partem de múltiplas garagens e terminam em uma escola (sink).
+A dapta o solver para o Multi-Depot Vehicle Routing Problem com destino final fixo, onde veículos partem de múltiplas garagens e terminam em uma escola.
 
-A abordagem principal é Branch-and-Price, combinando:
 
-Dantzig–Wolfe Decomposition
-
-Column Generation
-
-GRASP como warm-start
-
-Pricing heurístico + exato (ESPPRC via MIP)
-
-Branching em arcos (forced / forbidden arcs)
-
-O projeto também inclui:
-
-Instâncias sintéticas
-
-Instâncias reais baseadas em dados do OpenStreetMap (OSMnx)
-
-Visualização gráfica e geoespacial (Folium)
-
-📌 Problema Modelado
+#📌 Problema Modelado
 
 Garagens (depots): múltiplos pontos de partida
 
 Clientes: devem ser atendidos exatamente uma vez
 
-Sink (Escola): destino final comum para todas as rotas
+Escola: destino final comum para todas as rotas
 
 Capacidade: limitada por veículo
 
-Frota total: limitada por 
-𝐾
-K
+Frota total: limitada por 𝐾.
 
 Cada rota tem o formato:
 
-garagem → clientes → escola (sink)
-
+garagem → clientes → escola.
 
 Não é obrigatório utilizar todas as garagens.
 
-🧠 Formulação Matemática (Resumo)
+#🧠 Formulação Matemática 
 Problema Mestre — Set Partitioning
 
 Minimiza o custo total das rotas selecionadas:
+
+\[
+\min_{r \in \Omega} \sum_{r \in \Omega} c_r \lambda_r
+\]
+
+\[
+\text{sujeito a:}
+\]
+
+\[
+\sum_{r \in \Omega} a_{ir} \lambda_r = 1 \quad \forall i \in \mathcal{C}
+\]
+
+\[
+\sum_{r \in \Omega} \lambda_r \le K
+\]
+
+\[
+\lambda_r \in \{0,1\} \quad \forall r \in \Omega
+\]
+
 
 min
 ⁡
@@ -97,74 +96,6 @@ r∈Ω
 a
 ir
 	​
-
-λ
-r
-	​
-
-=1∀i∈C
-∑
-𝑟
-∈
-Ω
-𝜆
-𝑟
-≤
-𝐾
-r∈Ω
-∑
-	​
-
-λ
-r
-	​
-
-≤K
-𝜆
-𝑟
-∈
-{
-0
-,
-1
-}
-λ
-r
-	​
-
-∈{0,1}
-
-Onde:
-
-𝐶
-C: conjunto de clientes
-
-𝑎
-𝑖
-𝑟
-=
-1
-a
-ir
-	​
-
-=1 se a rota 
-𝑟
-r atende o cliente 
-𝑖
-i
-
-𝑐
-𝑟
-c
-r
-	​
-
-: custo da rota
-
-𝐾
-K: número máximo de veículos
-
 Subproblema (Pricing)
 
 Resolve um ESPPRC (Elementary Shortest Path Problem with Resource Constraints), buscando rotas com custo reduzido negativo:
