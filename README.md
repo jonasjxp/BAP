@@ -55,8 +55,8 @@ Onde:
 - $c_r$: custo associado à rota $r$;
 - $K$: número máximo de veículos disponíveis.
 
-	
----​
+---
+​
 # Subproblema (Pricing)
 
 Resolve um ESPPRC (Elementary Shortest Path Problem with Resource Constraints), buscando rotas com custo reduzido negativo:
