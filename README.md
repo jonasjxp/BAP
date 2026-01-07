@@ -125,6 +125,6 @@ Visualização interativa com **Folium**:
 
 # ✍️ Autores
 
--Jonas Xavier
--Ranelle Oliveira
--Francisco das Chagas
+Jonas Xavier;
+Ranelle Oliveira;
+Francisco das Chagas;
