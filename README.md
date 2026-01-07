@@ -30,31 +30,7 @@ Problema Mestre — Set Partitioning
 
 Minimiza o custo total das rotas selecionadas:
 
-Minimiza o custo total das rotas selecionadas:
-
-min
-⁡
-∑
-𝑟
-∈
-Ω
-𝑐
-𝑟
-𝜆
-𝑟
-min
-r∈Ω
-∑
-	​
-
-c
-r
-	​
-
-λ
-r
-	​
-
+minr∈Ω∑​cr​λr​
 
 Sujeito a:
 
