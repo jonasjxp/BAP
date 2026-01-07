@@ -36,78 +36,25 @@ Minimiza o custo total das rotas selecionadas:
 
 Sujeito a:
 
-∑
-𝑟
-∈
-Ω
-𝑎
-𝑖
-𝑟
-𝜆
-𝑟
-=
-1
-∀
-𝑖
-∈
-𝐶
-r∈Ω
-∑
-	​
+```math
+\sum_{r \in \Omega} a_{ir} \lambda_r = 1 \quad \forall i \in \mathcal{C}
+```
 
-a
-ir
-	​
+```math
+\sum_{r \in \Omega} \lambda_r \le K
+```
 
-λ
-r
-	​
-
-=1∀i∈C
-∑
-𝑟
-∈
-Ω
-𝜆
-𝑟
-≤
-𝐾
-r∈Ω
-∑
-	​
-
-λ
-r
-	​
-
-≤K
-𝜆
-𝑟
-∈
-{
-0
-,
-1
-}
-λ
-r
-	​
-
-∈{0,1}
+```math
+\lambda_r \in \{0,1\} \quad \forall r \in \Omega
+```
 
 Onde:
 
-𝐶
-C: conjunto de clientes
+- $\mathcal{C}$: conjunto de clientes;
+- $a_{ir} = 1$ se a rota $r$ atende o cliente $i$, e $0$ caso contrário;
+- $c_r$: custo associado à rota $r$;
+- $K$: número máximo de veículos disponíveis.
 
-𝑎𝑖𝑟 = 1
-air=1 se a rota 
-𝑟 atende o cliente 
-𝑖
-𝑐
-𝑟
-: custo da rota
-K: número máximo de veículos
 	
 ---​
 # Subproblema (Pricing)
