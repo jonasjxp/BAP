@@ -123,20 +123,6 @@ Visualização interativa com **Folium**:
 
 ---
 
-🎓 Contexto Acadêmico
-
-Este projeto é adequado para:
-
-Trabalhos acadêmicos em Otimização Combinatória
-
-Pesquisa em Vehicle Routing Problem
-
-Estudos de Branch-and-Price
-
-Aplicações reais em Transporte Escolar
-
----
-
 # ✍️ Autores
 
 Jonas Xavier
