@@ -4,6 +4,17 @@ Branch-and-Price com Geração de Colunas (Python / Pyomo)
 A dapta o solver para o Multi-Depot Vehicle Routing Problem com destino final fixo, onde veículos partem de múltiplas garagens e terminam em uma escola.
 
 ---
+# 🛅 Por que ter múltiplos depósitos? (Garagens)
+
+Reflete operações reais: empresas quase nunca operam de um único ponto.
+
+Reduz custo e tempo: permitir que cada cliente seja atendido pelo depósito “mais próximo” (ou mais conveniente) costuma diminuir quilômetros, tempo de viagem, pedágios e até combustível.
+
+Permite restrições mais específicas.
+
+Melhora robustez operacional.
+
+---
 
 # 📌 Problema Modelado
 
@@ -66,7 +77,7 @@ Resolve um ESPPRC (Elementary Shortest Path Problem with Resource Constraints), 
 ```
 Implementado de duas formas:
 
-- **Heurístico**: abordagem gulosa com refinamento por *2-opt aberto*.
+- **Heurístico**: abordagem gulosa com refinamento por **2-opt aberto**.
 - **Exato**: modelo de Programação Inteira Mista (MIP) implementado em Pyomo, utilizando restrições MTZ e de capacidade.
 
 ---
