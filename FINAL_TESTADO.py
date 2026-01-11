@@ -694,9 +694,8 @@ def solve_node_md(
         pi_cov_use = pi_cov_stab
         pi_flt_use = pi_flt_stab
 
-        # -------------------------
         # Pricing heurístico
-        # -------------------------
+        
         new_col = False
         added = 0
 
@@ -766,9 +765,8 @@ def solve_node_md(
                 curr = bst_n
                 load += 1
 
-        # -------------------------
-        # Pricing exato (fallback)
-        # -------------------------
+        # Pricing exato 
+        
         if not new_col:
             ex_col, min_rc = solve_exact_pricing_md(
                 inst,
@@ -898,9 +896,8 @@ def solve_full_branch_and_price_md(inst, alpha=0.5, gap_tol=0.01, time_limit=900
         if child1.lb < best_int_val:
             heappush(pq, child1)
 
-    # -------------------------
-    # IP Final (Set Partitioning) com frota <= K
-    # -------------------------
+    # IP Final com frota <= K
+    
     print("\n--- IP Final (Set Partitioning) ---")
 
     rmp_f = pyo.ConcreteModel()
