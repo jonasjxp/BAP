@@ -1,36 +1,34 @@
 # 🚍 Multi-Depot Vehicle Routing Problem with Sink
 Branch-and-Price com Geração de Colunas (Python / Pyomo)
 
-A dapta o solver para o Multi-Depot Vehicle Routing Problem com destino final fixo, onde veículos partem de múltiplas garagens e terminam em uma escola.
+Este trabalho adapta um solver para o Multi-Depot Vehicle Routing Problem com destino final fixo, no qual veículos partem de múltiplas garagens e terminam em uma escola (Sink).
 
 ---
 # 🛅 Por que ter múltiplos depósitos? (Garagens)
 
-Reflete operações reais: empresas quase nunca operam de um único ponto.
+Reflete operações reais: empresas raramente operam a partir de um único ponto.
 
-Reduz custo e tempo: permitir que cada cliente seja atendido pelo depósito “mais próximo” (ou mais conveniente) costuma diminuir quilômetros, tempo de viagem, pedágios e até combustível.
+Reduz custo e tempo: permitir que cada cliente seja atendido pelo depósito mais conveniente tende a reduzir distância total, tempo de viagem e custos operacionais.
 
-Permite restrições mais específicas.
+Permite restrições mais específicas por região ou base operacional.
 
-Melhora robustez operacional.
+Melhora a robustez e flexibilidade do planejamento logístico.
 
 ---
 
 # 📌 Problema Modelado
 
-Garagens (depots): múltiplos pontos de partida
+Garagens (depots): múltiplos pontos de partida das rotas;
 
-Clientes: devem ser atendidos exatamente uma vez
+Clientes: devem ser atendidos exatamente uma vez;
 
-Escola: destino final comum para todas as rotas
+Escola (sink): destino final comum para todas as rotas;
 
-Capacidade: limitada por veículo
+Capacidade: limitada por veículo, modelada como número máximo de clientes atendidos por rota (demanda unitária);
 
-Frota total: limitada por 𝐾.
+Frota total: limitada por um número máximo de veículos 𝐾.
 
-Cada rota tem o formato:
-
-garagem → clientes → escola.
+Rotas são no formato: garagem → clientes → escola.
 
 Não é obrigatório utilizar todas as garagens.
 
