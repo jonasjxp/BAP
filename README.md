@@ -93,19 +93,25 @@ restrições MTZ para eliminação de subtours.
   Instância baseada em dados reais, construída a partir do **OSMnx**.
 
 - **run_grasp_vrp_md**  
-  *Warm-start* via GRASP, gerando rotas longas iniciais.
+  *Warm-start* via GRASP, gerando rotas iniciais longas e diversificadas.
 
 - **improve_route_2opt_open**  
-  Operador de busca local *2-opt* para rotas abertas (depósito → *sink*).
+  Operador de busca local 2-opt aberto, apropriado para rotas com início fixo no depósito e término fixo no sink.
 
 - **solve_exact_pricing_md**  
   Subproblema de *pricing* resolvido exatamente via MIP (ESPPRC).
 
 - **solve_node_md**  
-  Resolução de um nó da árvore do **Branch-and-Price**.
+  Resolução de um nó da árvore do Branch-and-Price, combinando geração de colunas, pricing heurístico e exato..
 
 - **solve_full_branch_and_price_md**  
-  Implementação completa do algoritmo **Branch-and-Price**.
+  Implementação completa do algoritmo Branch-and-Price, incluindo:
+
+  - resolução do mestre relaxado;
+
+  - geração iterativa de colunas;
+
+  - branching sobre arcos fracionários, obtidos a partir da solução agregada do mestre.
 
 ---
 
