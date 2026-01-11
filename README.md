@@ -75,8 +75,11 @@ Resolve um ESPPRC (Elementary Shortest Path Problem with Resource Constraints), 
 ```
 Implementado de duas formas:
 
-- **Heurístico**: abordagem gulosa com refinamento por **2-opt aberto**.
-- **Exato**: modelo de Programação Inteira Mista (MIP) implementado em Pyomo, utilizando restrições MTZ e de capacidade.
+- **Heurístico**: abordagem gulosa com refinamento por **2-opt aberto**, respeitando a capacidade máxima de clientes por rota;
+- Modelo de Programação Inteira Mista (MIP) implementado em Pyomo, com:
+variáveis de arco;
+restrições de capacidade;
+restrições MTZ para eliminação de subtours.
 
 ---
 
