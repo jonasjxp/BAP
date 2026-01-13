@@ -545,21 +545,6 @@ class BPNode:
     def __init__(self, nid, parent=None, forbidden=None, forced=None):
         self.id = nid
         self.parent = parent
-
-        self.forbidden = set(forbidden) if forbidden is not None else set()
-        self.forced = set(forced) if forced is not None else set()
-
-        self.lb = -float("inf")     # lower bound do nó (valor do RMP relaxado)
-        self.lam_sol = {}           # solução do mestre: {route_id: lambda_value}
-        self.x_bar = {}             # arcos agregados derivados do lambda: {(i,j): val}
-
-    def __lt__(self, other):
-        return self.lb < other.lb
-
-class BPNode:
-    def __init__(self, nid, parent=None, forbidden=None, forced=None):
-        self.id = nid
-        self.parent = parent
         self.forbidden = set(forbidden) if forbidden is not None else set()
         self.forced = set(forced) if forced is not None else set()
         self.lb = float("inf")
