@@ -2,11 +2,15 @@
 !apt-get install -y -qq coinor-cbc
 !pip install osmnx folium matplotlib networkx
 
+import osmnx as ox
+import random, time
+import networkx as nx
+import random
+from shapely.geometry import Point
+from dataclasses import dataclass
 import math, time, random
 import numpy as np
-import networkx as nx
 import matplotlib.pyplot as plt
-from dataclasses import dataclass
 from collections import defaultdict
 from heapq import heappush, heappop
 try:
@@ -15,9 +19,6 @@ except ImportError:
     pyo = None
     print("Pyomo não instalado (rode o pip install).")
 plt.rcParams["figure.figsize"] = (10, 6)
-
-from collections import defaultdict
-import random, time
 
 def path_edges(path):
     return {(path[k], path[k+1]) for k in range(len(path) - 1)}
@@ -141,130 +142,6 @@ inst = make_instance_md(n=30, m=3, K=8, Q=30, seed=42, sink_center=True)
 
 # plota só os pontos 
 plot_routes_md(inst, [], "Instância MD-VRP (Garagens → Escola)")
-
-"""# Branch-and-Price (heurístico de geração de colunas)
-Master relaxado com colunas (rotas garagem → clientes → destino); duais (π, μ);
-custo reduzido c̄_r = c_r − ∑_i π_i a_{ir} − μ.
-Sementes longas; fallback sem limite de veículos durante a fase LP.
-
-# Formulação para Branch-and-Price (Set Partitioning)
-
-O Branch-and-Price utiliza a decomposição de Dantzig–Wolfe, na qual o problema
-mestre seleciona rotas completas previamente geradas.
-
-Modelo Matemático — Branch-and-Price (Set Partitioning)
-
-O problema é decomposto em um Problema Mestre (RMP) e um Subproblema
-(Pricing).
-
-# Problema Mestre (Set Partitioning)
-
-Seja Ω o conjunto de todas as rotas viáveis do tipo
-garagem → clientes → destino final (sink).
-
-Variáveis:
-
-$$\lambda_r = \begin{cases} 1 & \text{se a rota } r \in \Omega \text{ é selecionada} \\ 0 & \text{caso contrário} \end{cases}$$
-
-Formulação:
-
-$$\min \sum_{r \in \Omega} c_r \lambda_r$$
-
-Sujeito a:
-
-$$\sum_{r \in \Omega} a_{ir} \lambda_r = 1 \quad \forall i \in \mathcal{C}$$
-
-$$\sum_{r \in \Omega} \lambda_r \le K$$
-
-$$\lambda_r \in \{0, 1\}$$
-
-Onde:
-
-*   $\mathcal{C}$ é o conjunto de clientes,
-*   $a_{ir} = 1$ se a rota $r$ atende o cliente $i$, e $0$ caso contrário,
-*   $c_r$ é o custo total da rota $r$,
-*   $K$ é o número máximo de veículos disponíveis.
-
-## Pricing Problem (Subproblema)
-
-O objetivo do subproblema é identificar uma nova rota r′ com custo reduzido
-negativo. Esse problema é tipicamente modelado como um Elementary Shortest
-Path Problem with Resource Constraints (ESPPRC).
-
-#### Função Objetivo: Minimizar o Custo Reduzido (c̄)
-
-$$
-\min \ \bar{c}
-= \sum_{(i,j) \in A} c_{ij} x_{ij}
-- \sum_{i \in \mathcal{C}} \pi_i \left( \sum_{j \in V} x_{ij} \right)
-- \sigma
-$$
-
-onde o custo reduzido é composto pelo custo real da rota menos os valores duais
-$\pi_i$ associados à cobertura dos clientes visitados e menos o dual $\sigma$
-da restrição de frota total.
-
-#### Sujeito a:
-
-**Fluxo na Garagem (Origem):**  
-O veículo deve sair exatamente uma vez de uma garagem.
-
-$$
-\sum_{j \in V \setminus \mathcal{D}} x_{dj} = 1,
-\quad \forall d \in \mathcal{D}
-$$
-
-**Fluxo no Destino Final:**  
-O veículo deve chegar exatamente uma vez ao destino final.
-
-$$
-\sum_{i \in V \setminus \{s\}} x_{is} = 1
-$$
-
-**Conservação de Fluxo (Clientes):**  
-Se o veículo entra em um cliente $k$, ele deve sair de $k$.
-
-$$
-\sum_{i \in V} x_{ik} - \sum_{j \in V} x_{kj} = 0,
-\quad \forall k \in \mathcal{C}
-$$
-
-**Elementaridade (Visitar no máximo uma vez):**  
-Cada cliente pode ser visitado no máximo uma vez na mesma rota.
-
-$$
-\sum_{i \in V} x_{ik} \le 1,
-\quad \forall k \in \mathcal{C}
-$$
-
-**Capacidade e Eliminação de Subciclos:**  
-As restrições abaixo garantem que a capacidade do veículo não seja violada e
-impedem a formação de subciclos desconectados.
-
-$$
-u_j \ge u_i + q_j - M(1 - x_{ij}),
-\quad \forall (i,j) \in A, \ j \in \mathcal{C}
-$$
-
-$$
-q_i \le u_i \le Q,
-\quad \forall i \in \mathcal{C}
-$$
-
-onde $u_i$ representa a carga acumulada ao visitar o nó $i$, $q_i$ é a demanda
-do cliente $i$, $Q$ é a capacidade do veículo e $M$ é uma constante grande
-(suficientemente grande, tipicamente $M = Q$).
-
-**Restrições de Domínio:**
-
-$$
-x_{ij} \in \{0,1\}, \quad \forall (i,j) \in A
-$$
-
-$$
-u_i \ge 0
-$$
-"""
 
 def run_grasp_vrp_md(inst, iterations=50, alpha=0.2, respect_K=False, use_2opt=True):
     """
@@ -947,13 +824,6 @@ cost_bp, routes_bp = solve_full_branch_and_price_md(
 )
 
 plot_routes_md(inst, routes_bp, f"Branch-and-Price MD→Sink (Q={inst.Q}) - Custo {cost_bp:.2f}")
-
-import osmnx as ox
-import networkx as nx
-import random
-import numpy as np
-from shapely.geometry import Point
-from dataclasses import dataclass
 
 ox.settings.use_cache = True
 ox.settings.log_console = False
